@@ -10,7 +10,6 @@ final injector = Injector.appInstance;
 
 void main() {
   registerAllModules();
-  HarryPotterRepository repository = injector.get<HarryPotterRepository>();
 
   runApp(MultiBlocProvider(providers: [
     BlocProvider<DashboardBloc>(create: (context) => injector.get<DashboardBloc>())
