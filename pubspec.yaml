@@ -32,6 +32,7 @@ dependencies:
   http: ^0.13.3
   equatable: ^2.0.0
   injector: ^2.0.0
+  transparent_image: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -42,6 +43,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  assets:
+    - assets/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
