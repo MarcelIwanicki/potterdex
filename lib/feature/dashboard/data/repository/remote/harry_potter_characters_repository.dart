@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:potterdex/feature/dashboard/data/dataprovider/harry_potter_api.dart';
 import 'package:potterdex/feature/dashboard/data/model/harry_potter_character.dart';
 
-class HarryPotterRepository {
+class HarryPotterCharactersRepository {
   final HarryPotterAPI _harryPotterAPI;
 
-  HarryPotterRepository(this._harryPotterAPI);
+  HarryPotterCharactersRepository(this._harryPotterAPI);
 
   Future<List<HarryPotterCharacter>> getHarryPotterCharacters() async {
     final response = await _harryPotterAPI.getRawHarryPotterCharacters();
