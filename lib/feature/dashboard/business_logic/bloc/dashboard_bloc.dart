@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:potterdex/feature/dashboard/data/model/harry_potter_character.dart';
-import 'package:potterdex/feature/dashboard/data/repository/harry_potter_repository.dart';
+import 'package:potterdex/feature/dashboard/data/repository/remote/harry_potter_characters_repository.dart';
 
 part 'dashboard_event.dart';
 
 part 'dashboard_state.dart';
 
 class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
-  HarryPotterRepository repository;
+  HarryPotterCharactersRepository repository;
 
   DashboardBloc(this.repository) : super(DashboardInitialState());
 

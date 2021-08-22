@@ -1,12 +1,19 @@
 import 'dart:core';
 
-class HarryPotterCharacter {
+import 'package:equatable/equatable.dart';
+import 'package:floor/floor.dart';
+
+@entity
+class HarryPotterCharacter extends Equatable {
+  @primaryKey
+  final int id;
+
   String name;
   String species;
   String gender;
   String house;
   String dateOfBirth;
-  dynamic yearOfBirth;
+  String yearOfBirth;
   String ancestry;
   String eyeColour;
   String hairColour;
@@ -19,7 +26,8 @@ class HarryPotterCharacter {
   String image;
 
   HarryPotterCharacter(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required this.species,
       required this.gender,
       required this.house,
@@ -38,12 +46,15 @@ class HarryPotterCharacter {
 
   factory HarryPotterCharacter.fromJson(Map<String, dynamic> json) {
     return HarryPotterCharacter(
+      id: json.hashCode,
       name: json['name'],
       species: json['species'],
       gender: json['gender'],
       house: json['house'],
       dateOfBirth: json['dateOfBirth'],
-      yearOfBirth: json['yearOfBirth'],
+      yearOfBirth: json['yearOfBirth'] is String
+          ? json['yearOfBirth']
+          : json['yearOfBirth'].toString(),
       ancestry: json['ancestry'],
       eyeColour: json['eyeColour'],
       hairColour: json['hairColour'],
@@ -56,20 +67,35 @@ class HarryPotterCharacter {
       image: json['image'],
     );
   }
+
+  @override
+  List<Object?> get props => [id];
 }
 
-class Wand {
+@entity
+class Wand extends Equatable {
+  @primaryKey
+  final int id;
+
   String wood;
   String core;
   dynamic length;
 
   Wand({
+    required this.id,
     required this.wood,
     required this.core,
     required this.length,
   });
 
   factory Wand.fromJson(Map<String, dynamic> json) {
-    return Wand(wood: json['wood'], core: json['core'], length: json['length']);
+    return Wand(
+        id: json.hashCode,
+        wood: json['wood'],
+        core: json['core'],
+        length: json['length']);
   }
+
+  @override
+  List<Object?> get props => [id];
 }
