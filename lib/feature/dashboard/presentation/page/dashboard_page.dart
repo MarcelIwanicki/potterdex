@@ -28,7 +28,7 @@ class _DashboardPageState extends State<DashboardPage> {
   void initState() {
     super.initState();
     dashboardBloc = BlocProvider.of<DashboardBloc>(context);
-    dashboardBloc.add(GetHarryPotterCharactersEvent());
+    dashboardBloc.add(GetHarryPotterCharactersFromInternetEvent());
     closeContainerCubit = BlocProvider.of<CloseContainerCubit>(context);
     scrollController.addListener(() {
       closeContainerCubit.updateCloseContainer(scrollController.offset);

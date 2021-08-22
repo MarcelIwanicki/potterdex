@@ -8,22 +8,24 @@ class HarryPotterCharacter extends Equatable {
   @primaryKey
   final int id;
 
-  String name;
-  String species;
-  String gender;
-  String house;
-  String dateOfBirth;
-  String yearOfBirth;
-  String ancestry;
-  String eyeColour;
-  String hairColour;
-  Wand wand;
-  String patronus;
-  bool hogwartsStudent;
-  bool hogwartsStaff;
-  String actor;
-  bool alive;
-  String image;
+  final String name;
+  final String species;
+  final String gender;
+  final String house;
+  final String dateOfBirth;
+  final String yearOfBirth;
+  final String ancestry;
+  final String eyeColour;
+  final String hairColour;
+  final String wandWood;
+  final String wandCore;
+  final double wandLength;
+  final String patronus;
+  final bool hogwartsStudent;
+  final bool hogwartsStaff;
+  final String actor;
+  final bool alive;
+  final String image;
 
   HarryPotterCharacter(
       {required this.id,
@@ -36,7 +38,9 @@ class HarryPotterCharacter extends Equatable {
       required this.ancestry,
       required this.eyeColour,
       required this.hairColour,
-      required this.wand,
+      required this.wandWood,
+      required this.wandCore,
+      required this.wandLength,
       required this.patronus,
       required this.hogwartsStudent,
       required this.hogwartsStaff,
@@ -45,6 +49,14 @@ class HarryPotterCharacter extends Equatable {
       required this.image});
 
   factory HarryPotterCharacter.fromJson(Map<String, dynamic> json) {
+    dynamic jsonWandLength = json['wand']['length'];
+    double wandLengthDouble = .0;
+    if (jsonWandLength is int) {
+      wandLengthDouble = jsonWandLength.toDouble();
+    } else if (jsonWandLength is double) {
+      wandLengthDouble = jsonWandLength;
+    }
+
     return HarryPotterCharacter(
       id: json.hashCode,
       name: json['name'],
@@ -58,7 +70,9 @@ class HarryPotterCharacter extends Equatable {
       ancestry: json['ancestry'],
       eyeColour: json['eyeColour'],
       hairColour: json['hairColour'],
-      wand: Wand.fromJson(json['wand']),
+      wandWood: json['wand']['wood'],
+      wandCore: json['wand']['core'],
+      wandLength: wandLengthDouble,
       patronus: json['patronus'],
       hogwartsStudent: json['hogwartsStudent'],
       hogwartsStaff: json['hogwartsStaff'],
@@ -69,33 +83,5 @@ class HarryPotterCharacter extends Equatable {
   }
 
   @override
-  List<Object?> get props => [id];
-}
-
-@entity
-class Wand extends Equatable {
-  @primaryKey
-  final int id;
-
-  String wood;
-  String core;
-  dynamic length;
-
-  Wand({
-    required this.id,
-    required this.wood,
-    required this.core,
-    required this.length,
-  });
-
-  factory Wand.fromJson(Map<String, dynamic> json) {
-    return Wand(
-        id: json.hashCode,
-        wood: json['wood'],
-        core: json['core'],
-        length: json['length']);
-  }
-
-  @override
-  List<Object?> get props => [id];
+  List<Object?> get props => [name];
 }

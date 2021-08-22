@@ -60,7 +60,7 @@ class HarryPotterCharactersListItem extends StatelessWidget {
                       .HARRY_POTTER_CHARACTERS_LIST_ITEM_SPACE_BETWEEN_TITLE_AND_INFO,
                 ),
                 Text(
-                  "${AppStrings.HARRY_POTTER_CHARACTERS_LIST_ITEM_WAND_TEXT}: ${_character.wand.core},\n${_character.wand.length}\'\', ${_character.wand.wood}",
+                  "${AppStrings.HARRY_POTTER_CHARACTERS_LIST_ITEM_WAND_TEXT}: ${_character.wandCore},\n${_character.wandLength}\'\', ${_character.wandWood}",
                   style: const TextStyle(
                       fontSize:
                           AppDimens.HARRY_POTTER_CHARACTERS_LIST_ITEM_FONT_SIZE,

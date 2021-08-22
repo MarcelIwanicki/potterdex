@@ -7,7 +7,7 @@ abstract class LocalHarryPotterCharactersDao {
   Future<List<HarryPotterCharacter>> getAllHarryPotterCharacters();
 
   @Query('SELECT * FROM HarryPotterCharacter WHERE id = :id')
-  Stream<HarryPotterCharacter> getHarryPotterCharacterById(String id);
+  Stream<HarryPotterCharacter?> getHarryPotterCharacterById(int id);
 
   @insert
   Future<void> addHarryPotterCharacter(
