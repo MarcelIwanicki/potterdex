@@ -1,25 +1,35 @@
 import 'dart:core';
 
-class HarryPotterCharacter {
-  String name;
-  String species;
-  String gender;
-  String house;
-  String dateOfBirth;
-  dynamic yearOfBirth;
-  String ancestry;
-  String eyeColour;
-  String hairColour;
-  Wand wand;
-  String patronus;
-  bool hogwartsStudent;
-  bool hogwartsStaff;
-  String actor;
-  bool alive;
-  String image;
+import 'package:equatable/equatable.dart';
+import 'package:floor/floor.dart';
+
+@entity
+class HarryPotterCharacter extends Equatable {
+  @primaryKey
+  final int id;
+
+  final String name;
+  final String species;
+  final String gender;
+  final String house;
+  final String dateOfBirth;
+  final String yearOfBirth;
+  final String ancestry;
+  final String eyeColour;
+  final String hairColour;
+  final String wandWood;
+  final String wandCore;
+  final double wandLength;
+  final String patronus;
+  final bool hogwartsStudent;
+  final bool hogwartsStaff;
+  final String actor;
+  final bool alive;
+  final String image;
 
   HarryPotterCharacter(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required this.species,
       required this.gender,
       required this.house,
@@ -28,7 +38,9 @@ class HarryPotterCharacter {
       required this.ancestry,
       required this.eyeColour,
       required this.hairColour,
-      required this.wand,
+      required this.wandWood,
+      required this.wandCore,
+      required this.wandLength,
       required this.patronus,
       required this.hogwartsStudent,
       required this.hogwartsStaff,
@@ -37,17 +49,30 @@ class HarryPotterCharacter {
       required this.image});
 
   factory HarryPotterCharacter.fromJson(Map<String, dynamic> json) {
+    dynamic jsonWandLength = json['wand']['length'];
+    double wandLengthDouble = .0;
+    if (jsonWandLength is int) {
+      wandLengthDouble = jsonWandLength.toDouble();
+    } else if (jsonWandLength is double) {
+      wandLengthDouble = jsonWandLength;
+    }
+
     return HarryPotterCharacter(
+      id: json.hashCode,
       name: json['name'],
       species: json['species'],
       gender: json['gender'],
       house: json['house'],
       dateOfBirth: json['dateOfBirth'],
-      yearOfBirth: json['yearOfBirth'],
+      yearOfBirth: json['yearOfBirth'] is String
+          ? json['yearOfBirth']
+          : json['yearOfBirth'].toString(),
       ancestry: json['ancestry'],
       eyeColour: json['eyeColour'],
       hairColour: json['hairColour'],
-      wand: Wand.fromJson(json['wand']),
+      wandWood: json['wand']['wood'],
+      wandCore: json['wand']['core'],
+      wandLength: wandLengthDouble,
       patronus: json['patronus'],
       hogwartsStudent: json['hogwartsStudent'],
       hogwartsStaff: json['hogwartsStaff'],
@@ -56,20 +81,7 @@ class HarryPotterCharacter {
       image: json['image'],
     );
   }
-}
 
-class Wand {
-  String wood;
-  String core;
-  dynamic length;
-
-  Wand({
-    required this.wood,
-    required this.core,
-    required this.length,
-  });
-
-  factory Wand.fromJson(Map<String, dynamic> json) {
-    return Wand(wood: json['wood'], core: json['core'], length: json['length']);
-  }
+  @override
+  List<Object?> get props => [name];
 }

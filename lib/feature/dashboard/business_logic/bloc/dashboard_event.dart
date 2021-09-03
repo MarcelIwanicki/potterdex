@@ -1,14 +1,10 @@
 part of 'dashboard_bloc.dart';
 
-abstract class DashboardEvent extends Equatable{
+abstract class DashboardEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
 
-class GetHarryPotterCharactersEvent extends DashboardEvent {
+class GetHarryPotterCharactersEvent extends DashboardEvent {}
 
-}
-
-class ResetHarryPotterCharactersEvent extends DashboardEvent {
-
-}
+class ResetHarryPotterCharactersEvent extends DashboardEvent {}
