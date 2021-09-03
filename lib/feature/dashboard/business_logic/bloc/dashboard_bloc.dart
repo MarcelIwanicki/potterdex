@@ -18,7 +18,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   Stream<DashboardState> mapEventToState(
     DashboardEvent event,
   ) async* {
-    if (event is GetHarryPotterCharactersFromInternetEvent) {
+    if (event is GetHarryPotterCharactersEvent) {
       yield HarryPotterCharactersAreLoadingState();
 
       try {

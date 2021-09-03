@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:potterdex/feature/dashboard/business_logic/bloc/dashboard_bloc.dart';
 import 'package:potterdex/feature/dashboard/business_logic/cubit/close_container_cubit.dart';
-import 'package:potterdex/feature/dashboard/business_logic/cubit/close_container_state.dart';
 import 'package:potterdex/feature/dashboard/presentation/widget/categories_scroller.dart';
 import 'package:potterdex/feature/dashboard/presentation/widget/dashboard_appbar.dart';
 import 'package:potterdex/resources/values/app_dimens.dart';
@@ -28,11 +27,10 @@ class _DashboardPageState extends State<DashboardPage> {
   void initState() {
     super.initState();
     dashboardBloc = BlocProvider.of<DashboardBloc>(context);
-    dashboardBloc.add(GetHarryPotterCharactersFromInternetEvent());
+    dashboardBloc.add(GetHarryPotterCharactersEvent());
     closeContainerCubit = BlocProvider.of<CloseContainerCubit>(context);
     scrollController.addListener(() {
-      closeContainerCubit.updateCloseContainer(scrollController.offset);
-      closeContainerCubit.handleClosingContainer();
+      closeContainerCubit.handleClosingContainer(scrollController.offset);
     });
   }
 
@@ -73,13 +71,13 @@ class _DashboardPageState extends State<DashboardPage> {
               const SizedBox(
                 height: AppDimens.DASHBOARD_SPACE_BETWEEN_NAVBAR_AND_CATEGORIES,
               ),
-              BlocBuilder<CloseContainerCubit, CloseContainerState>(
+              BlocBuilder<CloseContainerCubit, bool>(
                 builder: (context, state) {
                   return AnimatedOpacity(
                     duration: const Duration(
                         milliseconds:
                             AppDimens.DURATION_ANIMATION_DEFAULT_MILLISECONDS),
-                    opacity: state.isClosed ? 0 : 1,
+                    opacity: state ? 0 : 1,
                     child: AnimatedContainer(
                         duration: const Duration(
                             milliseconds: AppDimens
@@ -87,7 +85,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         width: size.width,
                         alignment: Alignment.topCenter,
                         curve: Curves.fastOutSlowIn,
-                        height: state.isClosed ? 0 : categoryHeight,
+                        height: state ? 0 : categoryHeight,
                         child: categoriesScroller),
                   );
                 },
