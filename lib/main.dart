@@ -18,11 +18,11 @@ void main() {
         create: (context) => injector.get<DashboardBloc>()),
     BlocProvider<CloseContainerCubit>(
         create: (context) => injector.get<CloseContainerCubit>())
-  ], child: MyApp()));
+  ], child: PotterdexApp()));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class PotterdexApp extends StatelessWidget {
+  const PotterdexApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

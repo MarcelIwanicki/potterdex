@@ -1,10 +1,10 @@
 import 'package:potterdex/feature/dashboard/data/model/harry_potter_character.dart';
 import 'package:potterdex/feature/dashboard/data/repository/local/local_harry_potter_characters_database.dart';
-import 'package:potterdex/feature/dashboard/data/repository/remote/harry_potter_characters_repository.dart';
+import 'package:potterdex/feature/dashboard/data/repository/remote/harry_potter_characters_repository_api.dart';
 
 class HarryPotterCharactersService {
   final Future<LocalHarryPotterCharactersDatabase> localDatabase;
-  final HarryPotterCharactersRepository remoteRepository;
+  final HarryPotterCharactersRepositoryAPI remoteRepository;
 
   HarryPotterCharactersService(
       {required this.localDatabase, required this.remoteRepository});

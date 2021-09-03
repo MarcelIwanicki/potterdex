@@ -1,23 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:potterdex/feature/dashboard/business_logic/cubit/close_container_state.dart';
 
-class CloseContainerCubit extends Cubit<CloseContainerState> {
-  CloseContainerCubit()
-      : super(CloseContainerState(
-            isClosed: false,
-            scrollValue: .0,));
+const SCROLL_CLOSE_VALUE = 50;
 
-  void updateCloseContainer(scroll) {
-    emit(CloseContainerState(
-        isClosed: state.isClosed,
-        scrollValue: scroll));
-  }
+class CloseContainerCubit extends Cubit<bool> {
+  CloseContainerCubit() : super(false);
 
-  void handleClosingContainer() {
-    bool isClosedEmitValue = state.scrollValue > 50;
-
-    emit(CloseContainerState(
-        isClosed: isClosedEmitValue,
-        scrollValue: state.scrollValue));
-  }
+  void handleClosingContainer(scroll) => emit(scroll > SCROLL_CLOSE_VALUE);
 }
