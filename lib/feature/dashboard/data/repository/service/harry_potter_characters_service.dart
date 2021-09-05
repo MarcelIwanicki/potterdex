@@ -38,4 +38,11 @@ class HarryPotterCharactersService {
     return await localDatabase
         .then((value) => value.dao.getAllHarryPotterCharacters());
   }
+
+  Stream<HarryPotterCharacter?> getHarryPotterCharacterByIdFromLocalDatabase(
+      int id) async* {
+    await localDatabase.then((value) async* {
+      yield value.dao.getHarryPotterCharacterById(id);
+    });
+  }
 }
