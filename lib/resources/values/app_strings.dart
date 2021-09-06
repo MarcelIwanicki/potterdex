@@ -8,15 +8,30 @@ class AppStrings {
   static const DASHBOARD_UNKNOWN_ERROR = "Unknown error";
 
   // CATEGORIES SCROLLER
-  static const CATEGORIES_SCROLLER_ITEM_NAME_A = "Most\nfavorites";
-  static const CATEGORIES_SCROLLER_ITEM_NAME_B = "Human";
-  static const CATEGORIES_SCROLLER_ITEM_NAME_C = "Female";
-  static const CATEGORIES_SCROLLER_ITEM_NAME_D = "Male";
-  static const CATEGORIES_SCROLLER_ITEM_NAME_E = "Gryffindor";
-  static const CATEGORIES_SCROLLER_ITEM_NAME_F = "Hufflepuff";
-  static const CATEGORIES_SCROLLER_ITEM_NAME_G = "Slytherin";
-  static const CATEGORIES_SCROLLER_ITEM_NAME_H = "Ravenclaw";
-  static const CATEGORIES_SCROLLER_ITEM_COUNT_TEXT = "Items";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_ALL_ITEMS = "All\nitems";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_ALL_ITEMS_DESCRIPTION =
+      "All Characters";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_FAVORITES = "Most\nfavorites";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_FAVORITES_DESCRIPTION =
+      "Marked as favorite";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_HUMAN = "Human";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_HUMAN_DESCRIPTION = "Only human";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_FEMALE = "Female";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_FEMALE_DESCRIPTION = "Only female";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_MALE = "Male";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_MALE_DESCRIPTION = "Only male";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_GRYFFINDOR = "Gryffindor";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_GRYFFINDOR_DESCRIPTION =
+      "Only Gryffindor";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_HUFFLEPUFF = "Hufflepuff";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_HUFFLEPUFF_DESCRIPTION =
+      "Only Hufflepuff";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_SLYTHERIN = "Slytherin";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_SLYTHERIN_DESCRIPTION =
+      "Only Slytherin";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_RAVENCLAW = "Ravenclaw";
+  static const CATEGORIES_SCROLLER_ITEM_NAME_RAVENCLAW_DESCRIPTION =
+      "Only Ravenclaw";
 
   // HARRY POTTER CHARACTERS LIST ITEM WAND TEXT
   static const HARRY_POTTER_CHARACTERS_LIST_ITEM_WAND_TEXT = "Wand";
@@ -39,5 +54,4 @@ class AppStrings {
   static const DETAILS_HOGWARTS_ROLE_STAFF = "Staff";
   static const DETAILS_HOGWARTS_ROLE_STUDENT = "Student";
   static const DETAILS_ACTOR = 'Actor';
-
 }

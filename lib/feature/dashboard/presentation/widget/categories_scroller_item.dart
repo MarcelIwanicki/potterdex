@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:potterdex/resources/values/app_dimens.dart';
-import 'package:potterdex/resources/values/app_strings.dart';
 
 class CategoriesScrollerItem extends StatelessWidget {
   final double width;
   final double height;
   final title;
-  final countItems;
+  final description;
   final backgroundColor;
   final fontColor;
 
@@ -14,7 +13,7 @@ class CategoriesScrollerItem extends StatelessWidget {
       {required this.width,
       required this.height,
       this.title,
-      this.countItems,
+      this.description,
       this.backgroundColor,
       this.fontColor});
 
@@ -46,7 +45,7 @@ class CategoriesScrollerItem extends StatelessWidget {
               height: AppDimens.CATEGORIES_SCROLLER_ITEM_SPACE_BETWEEN_TEXTS,
             ),
             Text(
-              "$countItems ${AppStrings.CATEGORIES_SCROLLER_ITEM_COUNT_TEXT}",
+              "$description",
               style: TextStyle(
                   fontSize: AppDimens.CATEGORIES_SCROLLER_ITEM_FONT_SIZE,
                   color: fontColor),

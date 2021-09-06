@@ -20,8 +20,8 @@ class _DashboardPageState extends State<DashboardPage> {
   late DashboardBloc dashboardBloc;
   late CloseContainerCubit closeContainerCubit;
 
-  final CategoriesScroller categoriesScroller = CategoriesScroller();
-  ScrollController scrollController = ScrollController();
+  late CategoriesScroller categoriesScroller;
+  late ScrollController scrollController;
 
   @override
   void initState() {
@@ -29,6 +29,9 @@ class _DashboardPageState extends State<DashboardPage> {
     dashboardBloc = BlocProvider.of<DashboardBloc>(context);
     dashboardBloc.add(GetHarryPotterCharactersDashboardEvent());
     closeContainerCubit = BlocProvider.of<CloseContainerCubit>(context);
+
+    categoriesScroller = CategoriesScroller(dashboardBloc);
+    scrollController = ScrollController();
     scrollController.addListener(() {
       closeContainerCubit.handleClosingContainer(scrollController.offset);
     });
