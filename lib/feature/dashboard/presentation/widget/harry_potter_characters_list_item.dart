@@ -14,8 +14,10 @@ class HarryPotterCharactersListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => DetailsPage(_character)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetailsPage(_character.id)));
       },
       child: Container(
         height: AppDimens.HARRY_POTTER_CHARACTERS_LIST_ITEM_HEIGHT,

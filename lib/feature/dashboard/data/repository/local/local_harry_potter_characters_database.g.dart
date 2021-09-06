@@ -85,7 +85,7 @@ class _$LocalHarryPotterCharactersDatabase
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `HarryPotterCharacter` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `species` TEXT NOT NULL, `gender` TEXT NOT NULL, `house` TEXT NOT NULL, `dateOfBirth` TEXT NOT NULL, `yearOfBirth` TEXT NOT NULL, `ancestry` TEXT NOT NULL, `eyeColour` TEXT NOT NULL, `hairColour` TEXT NOT NULL, `wandWood` TEXT NOT NULL, `wandCore` TEXT NOT NULL, `wandLength` REAL NOT NULL, `patronus` TEXT NOT NULL, `hogwartsStudent` INTEGER NOT NULL, `hogwartsStaff` INTEGER NOT NULL, `actor` TEXT NOT NULL, `alive` INTEGER NOT NULL, `image` TEXT NOT NULL, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `HarryPotterCharacter` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `species` TEXT NOT NULL, `gender` TEXT NOT NULL, `house` TEXT NOT NULL, `dateOfBirth` TEXT NOT NULL, `yearOfBirth` TEXT NOT NULL, `ancestry` TEXT NOT NULL, `eyeColour` TEXT NOT NULL, `hairColour` TEXT NOT NULL, `wandWood` TEXT NOT NULL, `wandCore` TEXT NOT NULL, `wandLength` REAL NOT NULL, `patronus` TEXT NOT NULL, `hogwartsStudent` INTEGER NOT NULL, `hogwartsStaff` INTEGER NOT NULL, `actor` TEXT NOT NULL, `alive` INTEGER NOT NULL, `image` TEXT NOT NULL, `favorite` INTEGER NOT NULL, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -125,7 +125,35 @@ class _$LocalHarryPotterCharactersDao extends LocalHarryPotterCharactersDao {
                   'hogwartsStaff': item.hogwartsStaff ? 1 : 0,
                   'actor': item.actor,
                   'alive': item.alive ? 1 : 0,
-                  'image': item.image
+                  'image': item.image,
+                  'favorite': item.favorite ? 1 : 0
+                },
+            changeListener),
+        _harryPotterCharacterUpdateAdapter = UpdateAdapter(
+            database,
+            'HarryPotterCharacter',
+            ['id'],
+            (HarryPotterCharacter item) => <String, Object?>{
+                  'id': item.id,
+                  'name': item.name,
+                  'species': item.species,
+                  'gender': item.gender,
+                  'house': item.house,
+                  'dateOfBirth': item.dateOfBirth,
+                  'yearOfBirth': item.yearOfBirth,
+                  'ancestry': item.ancestry,
+                  'eyeColour': item.eyeColour,
+                  'hairColour': item.hairColour,
+                  'wandWood': item.wandWood,
+                  'wandCore': item.wandCore,
+                  'wandLength': item.wandLength,
+                  'patronus': item.patronus,
+                  'hogwartsStudent': item.hogwartsStudent ? 1 : 0,
+                  'hogwartsStaff': item.hogwartsStaff ? 1 : 0,
+                  'actor': item.actor,
+                  'alive': item.alive ? 1 : 0,
+                  'image': item.image,
+                  'favorite': item.favorite ? 1 : 0
                 },
             changeListener);
 
@@ -137,6 +165,8 @@ class _$LocalHarryPotterCharactersDao extends LocalHarryPotterCharactersDao {
 
   final InsertionAdapter<HarryPotterCharacter>
       _harryPotterCharacterInsertionAdapter;
+
+  final UpdateAdapter<HarryPotterCharacter> _harryPotterCharacterUpdateAdapter;
 
   @override
   Future<List<HarryPotterCharacter>> getAllHarryPotterCharacters() async {
@@ -160,7 +190,8 @@ class _$LocalHarryPotterCharactersDao extends LocalHarryPotterCharactersDao {
             hogwartsStaff: (row['hogwartsStaff'] as int) != 0,
             actor: row['actor'] as String,
             alive: (row['alive'] as int) != 0,
-            image: row['image'] as String));
+            image: row['image'] as String,
+            favorite: (row['favorite'] as int) != 0));
   }
 
   @override
@@ -186,7 +217,8 @@ class _$LocalHarryPotterCharactersDao extends LocalHarryPotterCharactersDao {
             hogwartsStaff: (row['hogwartsStaff'] as int) != 0,
             actor: row['actor'] as String,
             alive: (row['alive'] as int) != 0,
-            image: row['image'] as String),
+            image: row['image'] as String,
+            favorite: (row['favorite'] as int) != 0),
         arguments: [id],
         queryableName: 'HarryPotterCharacter',
         isView: false);
@@ -196,6 +228,13 @@ class _$LocalHarryPotterCharactersDao extends LocalHarryPotterCharactersDao {
   Future<void> addHarryPotterCharacter(
       HarryPotterCharacter harryPotterCharacter) async {
     await _harryPotterCharacterInsertionAdapter.insert(
+        harryPotterCharacter, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> updateHarryPotterCharacter(
+      HarryPotterCharacter harryPotterCharacter) async {
+    await _harryPotterCharacterUpdateAdapter.update(
         harryPotterCharacter, OnConflictStrategy.abort);
   }
 }

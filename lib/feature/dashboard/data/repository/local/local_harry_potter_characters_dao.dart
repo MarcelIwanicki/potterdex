@@ -12,4 +12,8 @@ abstract class LocalHarryPotterCharactersDao {
   @insert
   Future<void> addHarryPotterCharacter(
       HarryPotterCharacter harryPotterCharacter);
+
+  @update
+  Future<void> updateHarryPotterCharacter(
+      HarryPotterCharacter harryPotterCharacter);
 }

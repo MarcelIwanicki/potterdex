@@ -3,53 +3,68 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:potterdex/feature/dashboard/business_logic/bloc/dashboard_bloc.dart';
 
+import '../../repository/service/mock_harry_potter_characters_service.dart';
+
 class MockDashboardBloc extends MockBloc<DashboardEvent, DashboardState>
     implements DashboardBloc {}
 
 void main() {
   group('DashboardBloc', () {
     late DashboardBloc dashboardBloc;
+    late DashboardBloc mockDashboardBloc;
 
     setUpAll(() {
-      registerFallbackValue(GetHarryPotterCharactersEvent());
+      registerFallbackValue(GetHarryPotterCharactersDashboardEvent());
       registerFallbackValue(DashboardInitialState());
       registerFallbackValue(HarryPotterCharactersAreLoadedState(List.empty()));
     });
 
     setUp(() {
-      dashboardBloc = MockDashboardBloc();
+      dashboardBloc = DashboardBloc(MockHarryPotterCharactersService());
+      mockDashboardBloc = MockDashboardBloc();
     });
 
     tearDown(() {
       dashboardBloc.close();
+      mockDashboardBloc.close();
     });
 
-    test('bloc should emit DashboardInitialState by default', () {
-      whenListen(dashboardBloc, Stream.fromIterable([]),
-          initialState: DashboardInitialState());
+    test('the initial state for DashboardBloc is DashboardInitialState', () {
       expect(dashboardBloc.state, isA<DashboardInitialState>());
     });
+
+    blocTest<DashboardBloc, DashboardState>(
+        'the bloc should emit '
+            '[HarryPotterCharactersAreLoadingState:HarryPotterCharactersAreLoadingState(),'
+            'HarryPotterCharactersAreNotLoadedState:HarryPotterCharactersAreNotLoadedState()]'
+            'when GetHarryPotterCharacterDetailsEvent() is called',
+        build: () => dashboardBloc,
+        act: (bloc) => bloc.add(GetHarryPotterCharactersDashboardEvent()),
+        expect: () => [
+          HarryPotterCharactersAreLoadingState(),
+          HarryPotterCharactersAreNotLoadedState()
+        ]);
 
     test(
         'bloc should emit HarryPotterCharactersAreLoadedState on the end'
         'of the stream [initial, loading, loaded]'
         'and objects are loaded', () async {
       whenListen(
-          dashboardBloc,
+          mockDashboardBloc,
           Stream.fromIterable([
             HarryPotterCharactersAreLoadingState(),
             HarryPotterCharactersAreLoadedState(List.empty())
           ]),
           initialState: DashboardInitialState());
 
-      expect(dashboardBloc.state, isA<DashboardInitialState>());
+      expect(mockDashboardBloc.state, isA<DashboardInitialState>());
       await expectLater(
-          dashboardBloc.stream,
+          mockDashboardBloc.stream,
           emitsInOrder(<DashboardState>[
             HarryPotterCharactersAreLoadingState(),
             HarryPotterCharactersAreLoadedState(List.empty())
           ]));
-      expect(dashboardBloc.state,
+      expect(mockDashboardBloc.state,
           HarryPotterCharactersAreLoadedState(List.empty()));
     });
 
@@ -58,21 +73,21 @@ void main() {
         'of the stream [initial, loading, notLoaded]'
         'and objects are not loaded', () async {
       whenListen(
-          dashboardBloc,
+          mockDashboardBloc,
           Stream.fromIterable([
             HarryPotterCharactersAreLoadingState(),
             HarryPotterCharactersAreNotLoadedState()
           ]),
           initialState: DashboardInitialState());
 
-      expect(dashboardBloc.state, isA<DashboardInitialState>());
+      expect(mockDashboardBloc.state, isA<DashboardInitialState>());
       await expectLater(
-          dashboardBloc.stream,
+          mockDashboardBloc.stream,
           emitsInOrder(<DashboardState>[
             HarryPotterCharactersAreLoadingState(),
             HarryPotterCharactersAreNotLoadedState()
           ]));
-      expect(dashboardBloc.state, HarryPotterCharactersAreNotLoadedState());
+      expect(mockDashboardBloc.state, HarryPotterCharactersAreNotLoadedState());
     });
   });
 }

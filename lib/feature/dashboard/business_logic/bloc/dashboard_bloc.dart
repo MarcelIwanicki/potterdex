@@ -18,7 +18,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   Stream<DashboardState> mapEventToState(
     DashboardEvent event,
   ) async* {
-    if (event is GetHarryPotterCharactersEvent) {
+    if (event is GetHarryPotterCharactersDashboardEvent) {
       yield HarryPotterCharactersAreLoadingState();
 
       try {
@@ -29,7 +29,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
       } catch (e) {
         yield HarryPotterCharactersAreNotLoadedState();
       }
-    } else if (event is ResetHarryPotterCharactersEvent) {
+    } else if (event is ResetHarryPotterCharactersDashboardEvent) {
       yield HarryPotterCharactersAreNotLoadedState();
     }
   }
