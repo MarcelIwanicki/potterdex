@@ -33,9 +33,21 @@ class HarryPotterCharactersService {
         (value) => {value.dao.addHarryPotterCharacter(harryPotterCharacter)});
   }
 
+  Future<void> updateHarryPotterCharacterInLocalRepository(
+      HarryPotterCharacter harryPotterCharacter) async {
+    await localDatabase.then((value) =>
+        {value.dao.updateHarryPotterCharacter(harryPotterCharacter)});
+  }
+
   Future<List<HarryPotterCharacter>>
       getHarryPotterCharactersFromLocalDatabase() async {
     return await localDatabase
         .then((value) => value.dao.getAllHarryPotterCharacters());
+  }
+
+  Future<HarryPotterCharacter?> getHarryPotterCharacterByIdFromLocalDatabase(
+      int id) async {
+    return await localDatabase
+        .then((value) => value.dao.getHarryPotterCharacterById(id).first);
   }
 }

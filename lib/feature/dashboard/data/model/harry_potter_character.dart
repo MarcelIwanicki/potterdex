@@ -26,6 +26,7 @@ class HarryPotterCharacter extends Equatable {
   final String actor;
   final bool alive;
   final String image;
+  final bool favorite;
 
   HarryPotterCharacter(
       {required this.id,
@@ -46,7 +47,54 @@ class HarryPotterCharacter extends Equatable {
       required this.hogwartsStaff,
       required this.actor,
       required this.alive,
-      required this.image});
+      required this.image,
+      required this.favorite});
+
+  factory HarryPotterCharacter.empty() => HarryPotterCharacter(
+      id: 0,
+      name: "",
+      species: "",
+      gender: "",
+      house: "",
+      dateOfBirth: "",
+      yearOfBirth: "",
+      ancestry: "",
+      eyeColour: "",
+      hairColour: "",
+      wandWood: "",
+      wandCore: "",
+      wandLength: .0,
+      patronus: "",
+      hogwartsStudent: false,
+      hogwartsStaff: false,
+      actor: "",
+      alive: false,
+      image: "https://bibliotekant.pl/wp-content/uploads/2021/04/placeholder-image.png",
+      favorite: false);
+
+  factory HarryPotterCharacter.clone(
+          HarryPotterCharacter harryPotterCharacter, bool newFavorite) =>
+      HarryPotterCharacter(
+          id: harryPotterCharacter.id,
+          name: harryPotterCharacter.name,
+          species: harryPotterCharacter.species,
+          gender: harryPotterCharacter.gender,
+          house: harryPotterCharacter.house,
+          dateOfBirth: harryPotterCharacter.dateOfBirth,
+          yearOfBirth: harryPotterCharacter.yearOfBirth,
+          ancestry: harryPotterCharacter.ancestry,
+          eyeColour: harryPotterCharacter.eyeColour,
+          hairColour: harryPotterCharacter.hairColour,
+          wandWood: harryPotterCharacter.wandWood,
+          wandCore: harryPotterCharacter.wandCore,
+          wandLength: harryPotterCharacter.wandLength,
+          patronus: harryPotterCharacter.patronus,
+          hogwartsStudent: harryPotterCharacter.hogwartsStudent,
+          hogwartsStaff: harryPotterCharacter.hogwartsStaff,
+          actor: harryPotterCharacter.actor,
+          alive: harryPotterCharacter.alive,
+          image: harryPotterCharacter.image,
+          favorite: newFavorite);
 
   factory HarryPotterCharacter.fromJson(Map<String, dynamic> json) {
     dynamic jsonWandLength = json['wand']['length'];
@@ -79,6 +127,7 @@ class HarryPotterCharacter extends Equatable {
       actor: json['actor'],
       alive: json['alive'],
       image: json['image'],
+      favorite: false,
     );
   }
 

@@ -5,6 +5,8 @@ import 'package:potterdex/feature/dashboard/business_logic/bloc/dashboard_bloc.d
 import 'package:potterdex/feature/dashboard/business_logic/cubit/close_container_cubit.dart';
 import 'package:potterdex/feature/dashboard/presentation/page/dashboard_page.dart';
 import 'package:injector/injector.dart';
+import 'package:potterdex/feature/details/business_logic/bloc/details_bloc.dart';
+import 'package:potterdex/feature/details/business_logic/cubit/details_favorite_cubit.dart';
 import 'package:potterdex/resources/values/app_colors.dart';
 import 'package:potterdex/resources/values/app_strings.dart';
 
@@ -17,7 +19,10 @@ void main() {
     BlocProvider<DashboardBloc>(
         create: (context) => injector.get<DashboardBloc>()),
     BlocProvider<CloseContainerCubit>(
-        create: (context) => injector.get<CloseContainerCubit>())
+        create: (context) => injector.get<CloseContainerCubit>()),
+    BlocProvider<DetailsBloc>(create: (context) => injector.get<DetailsBloc>()),
+    BlocProvider<DetailsFavoriteCubit>(
+        create: (context) => injector.get<DetailsFavoriteCubit>()),
   ], child: PotterdexApp()));
 }
 
