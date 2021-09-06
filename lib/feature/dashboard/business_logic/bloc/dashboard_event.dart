@@ -5,6 +5,6 @@ abstract class DashboardEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetHarryPotterCharactersEvent extends DashboardEvent {}
+class GetHarryPotterCharactersDashboardEvent extends DashboardEvent {}
 
-class ResetHarryPotterCharactersEvent extends DashboardEvent {}
+class ResetHarryPotterCharactersDashboardEvent extends DashboardEvent {}
