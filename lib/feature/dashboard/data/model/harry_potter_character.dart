@@ -5,6 +5,9 @@ import 'package:floor/floor.dart';
 
 @entity
 class HarryPotterCharacter extends Equatable {
+  static const String DEFAULT_OFFLINE_IMAGE =
+      "https://bibliotekant.pl/wp-content/uploads/2021/04/placeholder-image.png";
+
   @primaryKey
   final int id;
 
@@ -69,7 +72,7 @@ class HarryPotterCharacter extends Equatable {
       hogwartsStaff: false,
       actor: "",
       alive: false,
-      image: "https://bibliotekant.pl/wp-content/uploads/2021/04/placeholder-image.png",
+      image: DEFAULT_OFFLINE_IMAGE,
       favorite: false);
 
   factory HarryPotterCharacter.clone(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:potterdex/di/modules_initializer.dart';
+import 'package:potterdex/feature/add/business_logic/add_character_cubit.dart';
 import 'package:potterdex/feature/dashboard/business_logic/bloc/dashboard_bloc.dart';
 import 'package:potterdex/feature/dashboard/business_logic/cubit/close_container_cubit.dart';
 import 'package:potterdex/feature/dashboard/presentation/page/dashboard_page.dart';
@@ -23,6 +24,8 @@ void main() {
     BlocProvider<DetailsBloc>(create: (context) => injector.get<DetailsBloc>()),
     BlocProvider<DetailsFavoriteCubit>(
         create: (context) => injector.get<DetailsFavoriteCubit>()),
+    BlocProvider<AddCharacterCubit>(
+        create: (context) => injector.get<AddCharacterCubit>()),
   ], child: PotterdexApp()));
 }
 
