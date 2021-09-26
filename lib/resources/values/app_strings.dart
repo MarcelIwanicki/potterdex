@@ -54,4 +54,7 @@ class AppStrings {
   static const DETAILS_HOGWARTS_ROLE_STAFF = "Staff";
   static const DETAILS_HOGWARTS_ROLE_STUDENT = "Student";
   static const DETAILS_ACTOR = 'Actor';
+  static const DETAILS_PURE_BLOOD = 'pure-blood';
+  static const DETAILS_HALF_BLOOD = 'half-blood';
+  static const DETAILS_MUGGLE_BORN = 'muggle-born';
 }

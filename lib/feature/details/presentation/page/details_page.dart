@@ -34,6 +34,7 @@ class _DetailsPageState extends State<DetailsPage> {
     return Scaffold(
       body: Center(
         child: CustomScrollView(
+          physics: BouncingScrollPhysics(),
           slivers: [
             BlocBuilder<DetailsBloc, DetailsState>(
               builder: (context, state) {

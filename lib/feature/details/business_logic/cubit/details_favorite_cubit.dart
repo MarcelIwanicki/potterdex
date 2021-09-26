@@ -13,7 +13,7 @@ class DetailsFavoriteCubit extends Cubit<bool> {
 
   void updateDatabase(HarryPotterCharacter character) async {
     try {
-      await service.updateHarryPotterCharacterInLocalRepository(
+      await service.updateHarryPotterCharacterInLocalDatabase(
           HarryPotterCharacter.clone(character, state));
     } catch (e) {}
   }
