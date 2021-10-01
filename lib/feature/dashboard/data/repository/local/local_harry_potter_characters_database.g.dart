@@ -225,6 +225,13 @@ class _$LocalHarryPotterCharactersDao extends LocalHarryPotterCharactersDao {
   }
 
   @override
+  Future<void> deleteHarryPotterCharacter(int id) async {
+    await _queryAdapter.queryNoReturn(
+        'DELETE FROM HarryPotterCharacter WHERE id = ?1',
+        arguments: [id]);
+  }
+
+  @override
   Future<void> addHarryPotterCharacter(
       HarryPotterCharacter harryPotterCharacter) async {
     await _harryPotterCharacterInsertionAdapter.insert(

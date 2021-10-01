@@ -16,4 +16,7 @@ abstract class LocalHarryPotterCharactersDao {
   @update
   Future<void> updateHarryPotterCharacter(
       HarryPotterCharacter harryPotterCharacter);
+
+  @Query('DELETE FROM HarryPotterCharacter WHERE id = :id')
+  Future<void> deleteHarryPotterCharacter(int id);
 }

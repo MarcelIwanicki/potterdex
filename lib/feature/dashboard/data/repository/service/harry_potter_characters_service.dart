@@ -39,6 +39,11 @@ class HarryPotterCharactersService {
         {value.dao.updateHarryPotterCharacter(harryPotterCharacter)});
   }
 
+  Future<void> deleteHarryPotterCharacterFromLocalDatabase(int id) async {
+    await localDatabase
+        .then((value) => {value.dao.deleteHarryPotterCharacter(id)});
+  }
+
   Future<List<HarryPotterCharacter>>
       getHarryPotterCharactersFromLocalDatabase() async {
     return await localDatabase

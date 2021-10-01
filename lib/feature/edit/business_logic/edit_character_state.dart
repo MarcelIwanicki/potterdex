@@ -1,7 +1,7 @@
-part of 'add_character_cubit.dart';
+part of 'edit_character_cubit.dart';
 
-abstract class AddCharacterState {
-  final DateTime _birthDate;
+abstract class EditCharacterState {
+  final DateTime? _birthDate;
   final String _gender;
   final String _name;
   final String _house;
@@ -13,9 +13,11 @@ abstract class AddCharacterState {
   final String _lifeCondition;
   final String _hogwartsRole;
   final String _actor;
+  final String _image;
+  final bool _favorite;
 
-  const AddCharacterState({
-    required DateTime birthDate,
+  const EditCharacterState({
+    required DateTime? birthDate,
     required String gender,
     required String name,
     required String house,
@@ -27,6 +29,8 @@ abstract class AddCharacterState {
     required String lifeCondition,
     required String hogwartsRole,
     required String actor,
+    required String image,
+    required bool favorite,
   })  : _birthDate = birthDate,
         _gender = gender,
         _name = name,
@@ -38,7 +42,9 @@ abstract class AddCharacterState {
         _species = species,
         _lifeCondition = lifeCondition,
         _hogwartsRole = hogwartsRole,
-        _actor = actor;
+        _actor = actor,
+        _image = image,
+        _favorite = favorite;
 
   String get actor => _actor;
 
@@ -62,28 +68,39 @@ abstract class AddCharacterState {
 
   String get gender => _gender;
 
-  DateTime get birthDate => _birthDate;
+  String get image => _image;
+
+  bool get favorite => _favorite;
+
+  DateTime? get birthDate => _birthDate;
+
+  @override
+  String toString() {
+    return 'EditCharacterState{_birthDate: $_birthDate, _gender: $_gender, _name: $_name, _house: $_house, _eyesColor: $_eyesColor, _hairColor: $_hairColor, _patronus: $_patronus, _ancestry: $_ancestry, _species: $_species, _lifeCondition: $_lifeCondition, _hogwartsRole: $_hogwartsRole, _actor: $_actor}';
+  }
 }
 
-class AddCharacterInitial extends AddCharacterState {
-  AddCharacterInitial()
+class EditCharacterInitial extends EditCharacterState {
+  EditCharacterInitial(HarryPotterCharacter character)
       : super(
             birthDate: DateTime.now(),
-            gender: "female",
-            name: "",
-            house: "Gryffindor",
-            eyesColor: "",
-            hairColor: "",
-            patronus: "",
-            ancestry: "pure-blood",
-            species: "",
-            lifeCondition: "Alive",
-            hogwartsRole: "Student",
-            actor: "");
+            gender: character.gender,
+            name: character.name,
+            house: character.house,
+            eyesColor: character.eyeColour,
+            hairColor: character.hairColour,
+            patronus: character.patronus,
+            ancestry: character.ancestry,
+            species: character.species,
+            lifeCondition: character.alive == true ? "Alive" : "Dead",
+            hogwartsRole: character.hogwartsStudent ? "Student" : "Staff",
+            actor: character.actor,
+            image: character.image,
+            favorite: character.favorite);
 }
 
-class AddCharacterEditValue extends AddCharacterState {
-  AddCharacterEditValue({
+class EditCharacterEditValue extends EditCharacterState {
+  EditCharacterEditValue({
     required DateTime birthDate,
     required String gender,
     required String name,
@@ -96,6 +113,8 @@ class AddCharacterEditValue extends AddCharacterState {
     required String lifeCondition,
     required String hogwartsRole,
     required String actor,
+    required String image,
+    required bool favorite,
   }) : super(
             birthDate: birthDate,
             gender: gender,
@@ -108,11 +127,13 @@ class AddCharacterEditValue extends AddCharacterState {
             species: species,
             lifeCondition: lifeCondition,
             hogwartsRole: hogwartsRole,
-            actor: actor);
+            actor: actor,
+            image: image,
+            favorite: favorite);
 }
 
-class AddCharacterSucceeded extends AddCharacterState {
-  AddCharacterSucceeded({
+class EditCharacterSucceeded extends EditCharacterState {
+  EditCharacterSucceeded({
     required DateTime birthDate,
     required String gender,
     required String name,
@@ -125,6 +146,9 @@ class AddCharacterSucceeded extends AddCharacterState {
     required String lifeCondition,
     required String hogwartsRole,
     required String actor,
+    required String image,
+    required bool favorite,
+    required HarryPotterCharacter harryPotterCharacter,
     required HarryPotterCharactersService service,
   }) : super(
             birthDate: birthDate,
@@ -138,12 +162,15 @@ class AddCharacterSucceeded extends AddCharacterState {
             species: species,
             lifeCondition: lifeCondition,
             hogwartsRole: hogwartsRole,
-            actor: actor) {
-    service.addHarryPotterCharacterToLocalDatabase(
-        _getHarryPotterCharacterFromValues());
+            actor: actor,
+            image: image,
+            favorite: favorite) {
+    service.updateHarryPotterCharacterInLocalDatabase(
+        _getHarryPotterCharacterFromValues(harryPotterCharacter));
   }
 
-  HarryPotterCharacter _getHarryPotterCharacterFromValues() =>
+  HarryPotterCharacter _getHarryPotterCharacterFromValues(
+          HarryPotterCharacter character) =>
       HarryPotterCharacter(
           id: _name.hashCode,
           name: _name,
@@ -151,19 +178,19 @@ class AddCharacterSucceeded extends AddCharacterState {
           gender: _gender,
           house: _house,
           dateOfBirth:
-              "${_birthDate.year}-${_birthDate.month}-${_birthDate.day}",
-          yearOfBirth: _birthDate.year.toString(),
+              "${_birthDate?.year}-${_birthDate?.month}-${_birthDate?.day}",
+          yearOfBirth: _birthDate?.year.toString() ?? "",
           ancestry: _ancestry,
           eyeColour: _eyesColor,
           hairColour: _hairColor,
-          wandWood: "",
-          wandCore: "",
-          wandLength: .0,
+          wandWood: character.wandWood,
+          wandCore: character.wandCore,
+          wandLength: character.wandLength,
           patronus: _patronus,
           hogwartsStudent: _hogwartsRole == "Student" ? true : false,
           hogwartsStaff: _hogwartsRole == "Staff" ? true : false,
           actor: _actor,
           alive: _lifeCondition == "Alive" ? true : false,
-          image: HarryPotterCharacter.DEFAULT_OFFLINE_IMAGE,
-          favorite: false);
+          image: _image,
+          favorite: _favorite);
 }
