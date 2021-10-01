@@ -109,7 +109,7 @@ class HarryPotterCharacter extends Equatable {
     }
 
     return HarryPotterCharacter(
-      id: json.hashCode,
+      id: json['name'].hashCode,
       name: json['name'],
       species: json['species'],
       gender: json['gender'],
@@ -136,4 +136,9 @@ class HarryPotterCharacter extends Equatable {
 
   @override
   List<Object?> get props => [name];
+
+  @override
+  String toString() {
+    return 'HarryPotterCharacter{id: $id, name: $name, species: $species, gender: $gender, house: $house, dateOfBirth: $dateOfBirth, yearOfBirth: $yearOfBirth, ancestry: $ancestry, eyeColour: $eyeColour, hairColour: $hairColour, wandWood: $wandWood, wandCore: $wandCore, wandLength: $wandLength, patronus: $patronus, hogwartsStudent: $hogwartsStudent, hogwartsStaff: $hogwartsStaff, actor: $actor, alive: $alive, image: $image, favorite: $favorite}';
+  }
 }

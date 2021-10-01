@@ -8,6 +8,7 @@ import 'package:potterdex/feature/dashboard/presentation/page/dashboard_page.dar
 import 'package:injector/injector.dart';
 import 'package:potterdex/feature/details/business_logic/bloc/details_bloc.dart';
 import 'package:potterdex/feature/details/business_logic/cubit/details_favorite_cubit.dart';
+import 'package:potterdex/feature/edit/business_logic/edit_character_cubit.dart';
 import 'package:potterdex/resources/values/app_colors.dart';
 import 'package:potterdex/resources/values/app_strings.dart';
 
@@ -26,6 +27,8 @@ void main() {
         create: (context) => injector.get<DetailsFavoriteCubit>()),
     BlocProvider<AddCharacterCubit>(
         create: (context) => injector.get<AddCharacterCubit>()),
+    BlocProvider<EditCharacterCubit>(
+        create: (context) => injector.get<EditCharacterCubit>()),
   ], child: PotterdexApp()));
 }
 
