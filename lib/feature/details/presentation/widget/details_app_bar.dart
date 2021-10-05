@@ -83,11 +83,21 @@ class _DetailsAppBarState extends State<DetailsAppBar> {
         )
       ],
       flexibleSpace: FlexibleSpaceBar(
-          background: FadeInImage.memoryNetwork(
-        placeholder: kTransparentImage,
-        image: widget._character.image,
-        fit: BoxFit.cover,
-      )),
+        background: widget._character.image.isNotEmpty
+            ? FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
+                image: widget._character.image,
+                fit: BoxFit.cover,
+              )
+            : FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
+                image: HarryPotterCharacter.DEFAULT_OFFLINE_IMAGE,
+                width: AppDimens.HARRY_POTTER_CHARACTERS_LIST_ITEM_IMAGE_WIDTH,
+                height:
+                    AppDimens.HARRY_POTTER_CHARACTERS_LIST_ITEM_IMAGE_HEIGHT,
+                imageCacheWidth: AppDimens
+                    .HARRY_POTTER_CHARACTERS_LIST_ITEM_IMAGE_CACHED_HEIGHT),
+      ),
     );
   }
 

@@ -55,4 +55,14 @@ class HarryPotterCharactersService {
     return await localDatabase
         .then((value) => value.dao.getHarryPotterCharacterById(id).first);
   }
+
+  Future<List<HarryPotterCharacter>>
+      searchForHarryPotterCharactersInLocalDatabase(String query) async {
+    final allCharacters = await getHarryPotterCharactersFromLocalDatabase();
+
+    List<HarryPotterCharacter> searchedCharacters =
+        allCharacters.where((e) => e.name.toLowerCase().trim().contains(query)).toList();
+
+    return searchedCharacters;
+  }
 }

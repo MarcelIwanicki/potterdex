@@ -46,7 +46,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: DashboardAppBar(),
+      appBar: DashboardAppBar(dashboardBloc, size),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: Theme.of(context).accentColor,
