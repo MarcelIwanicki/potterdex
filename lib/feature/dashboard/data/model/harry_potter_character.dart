@@ -5,6 +5,9 @@ import 'package:floor/floor.dart';
 
 @entity
 class HarryPotterCharacter extends Equatable {
+  static const String DEFAULT_OFFLINE_IMAGE =
+      "https://bibliotekant.pl/wp-content/uploads/2021/04/placeholder-image.png";
+
   @primaryKey
   final int id;
 
@@ -69,7 +72,7 @@ class HarryPotterCharacter extends Equatable {
       hogwartsStaff: false,
       actor: "",
       alive: false,
-      image: "https://bibliotekant.pl/wp-content/uploads/2021/04/placeholder-image.png",
+      image: DEFAULT_OFFLINE_IMAGE,
       favorite: false);
 
   factory HarryPotterCharacter.clone(
@@ -106,7 +109,7 @@ class HarryPotterCharacter extends Equatable {
     }
 
     return HarryPotterCharacter(
-      id: json.hashCode,
+      id: json['name'].hashCode,
       name: json['name'],
       species: json['species'],
       gender: json['gender'],
@@ -133,4 +136,9 @@ class HarryPotterCharacter extends Equatable {
 
   @override
   List<Object?> get props => [name];
+
+  @override
+  String toString() {
+    return 'HarryPotterCharacter{id: $id, name: $name, species: $species, gender: $gender, house: $house, dateOfBirth: $dateOfBirth, yearOfBirth: $yearOfBirth, ancestry: $ancestry, eyeColour: $eyeColour, hairColour: $hairColour, wandWood: $wandWood, wandCore: $wandCore, wandLength: $wandLength, patronus: $patronus, hogwartsStudent: $hogwartsStudent, hogwartsStaff: $hogwartsStaff, actor: $actor, alive: $alive, image: $image, favorite: $favorite}';
+  }
 }

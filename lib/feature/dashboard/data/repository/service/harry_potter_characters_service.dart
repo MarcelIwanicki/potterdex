@@ -17,7 +17,7 @@ class HarryPotterCharactersService {
 
     remoteHarryPotterCharacters.forEach((remoteCharacter) {
       if (!localHarryPotterCharacters.contains(remoteCharacter)) {
-        addHarryPotterCharacterToLocalRepository(remoteCharacter);
+        addHarryPotterCharacterToLocalDatabase(remoteCharacter);
       }
     });
   }
@@ -27,16 +27,21 @@ class HarryPotterCharactersService {
     return await remoteRepository.getHarryPotterCharacters();
   }
 
-  Future<void> addHarryPotterCharacterToLocalRepository(
+  Future<void> addHarryPotterCharacterToLocalDatabase(
       HarryPotterCharacter harryPotterCharacter) async {
     await localDatabase.then(
         (value) => {value.dao.addHarryPotterCharacter(harryPotterCharacter)});
   }
 
-  Future<void> updateHarryPotterCharacterInLocalRepository(
+  Future<void> updateHarryPotterCharacterInLocalDatabase(
       HarryPotterCharacter harryPotterCharacter) async {
     await localDatabase.then((value) =>
         {value.dao.updateHarryPotterCharacter(harryPotterCharacter)});
+  }
+
+  Future<void> deleteHarryPotterCharacterFromLocalDatabase(int id) async {
+    await localDatabase
+        .then((value) => {value.dao.deleteHarryPotterCharacter(id)});
   }
 
   Future<List<HarryPotterCharacter>>
@@ -49,5 +54,15 @@ class HarryPotterCharactersService {
       int id) async {
     return await localDatabase
         .then((value) => value.dao.getHarryPotterCharacterById(id).first);
+  }
+
+  Future<List<HarryPotterCharacter>>
+      searchForHarryPotterCharactersInLocalDatabase(String query) async {
+    final allCharacters = await getHarryPotterCharactersFromLocalDatabase();
+
+    List<HarryPotterCharacter> searchedCharacters =
+        allCharacters.where((e) => e.name.toLowerCase().trim().contains(query)).toList();
+
+    return searchedCharacters;
   }
 }

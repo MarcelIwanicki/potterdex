@@ -7,6 +7,9 @@ class AppStrings {
   static const DASHBOARD_INITIAL_STATE_STRING = "Initial state";
   static const DASHBOARD_UNKNOWN_ERROR = "Unknown error";
 
+  // DASHBOARD SEARCH
+  static const DASHBOARD_SEARCH = "Search";
+
   // CATEGORIES SCROLLER
   static const CATEGORIES_SCROLLER_ITEM_NAME_ALL_ITEMS = "All\nitems";
   static const CATEGORIES_SCROLLER_ITEM_NAME_ALL_ITEMS_DESCRIPTION =
@@ -54,4 +57,7 @@ class AppStrings {
   static const DETAILS_HOGWARTS_ROLE_STAFF = "Staff";
   static const DETAILS_HOGWARTS_ROLE_STUDENT = "Student";
   static const DETAILS_ACTOR = 'Actor';
+  static const DETAILS_PURE_BLOOD = 'pure-blood';
+  static const DETAILS_HALF_BLOOD = 'half-blood';
+  static const DETAILS_MUGGLE_BORN = 'muggle-born';
 }

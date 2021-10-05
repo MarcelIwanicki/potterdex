@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:potterdex/feature/dashboard/business_logic/bloc/dashboard_bloc.dart';
+import 'package:potterdex/feature/dashboard/presentation/widget/animated_search_bar.dart';
 import 'package:potterdex/resources/values/app_strings.dart';
 
 class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
   final appBar = AppBar();
+  final DashboardBloc _dashboardBloc;
+  final Size _size;
 
-  DashboardAppBar({Key? key}) : super(key: key);
+  DashboardAppBar(this._dashboardBloc, this._size);
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +21,7 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       leading: Icon(Icons.menu, color: Colors.black),
       actions: [
-        IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.search,
-              color: Colors.black,
-            )),
+        AnimatedSearchBar(_dashboardBloc, _size),
         IconButton(
             onPressed: () {},
             icon: Icon(

@@ -34,6 +34,7 @@ class _DetailsPageState extends State<DetailsPage> {
     return Scaffold(
       body: Center(
         child: CustomScrollView(
+          physics: BouncingScrollPhysics(),
           slivers: [
             BlocBuilder<DetailsBloc, DetailsState>(
               builder: (context, state) {
@@ -42,7 +43,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   character = state.getCharacter;
                   detailsFavoriteCubit.setFavorite(character.favorite);
                 }
-                return DetailsAppBar(character, detailsFavoriteCubit);
+                return DetailsAppBar(character, detailsFavoriteCubit, null, true);
               },
             ),
             BlocBuilder<DetailsBloc, DetailsState>(

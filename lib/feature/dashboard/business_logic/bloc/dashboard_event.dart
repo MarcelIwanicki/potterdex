@@ -7,6 +7,11 @@ abstract class DashboardEvent extends Equatable {
 
 class GetHarryPotterCharactersDashboardEvent extends DashboardEvent {}
 
+class SearchHarryPotterCharacterByQuery extends DashboardEvent {
+  final String query;
+  SearchHarryPotterCharacterByQuery(this.query);
+}
+
 class FilterHarryPotterCharactersDashboardByFavoriteEvent
     extends DashboardEvent {}
 

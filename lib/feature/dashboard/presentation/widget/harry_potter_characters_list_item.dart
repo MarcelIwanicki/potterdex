@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:potterdex/feature/dashboard/data/model/harry_potter_character.dart';
 import 'package:potterdex/feature/details/presentation/page/details_page.dart';
 import 'package:potterdex/resources/values/app_dimens.dart';
-import 'package:potterdex/resources/values/app_strings.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class HarryPotterCharactersListItem extends StatelessWidget {
@@ -58,7 +57,7 @@ class HarryPotterCharactersListItem extends StatelessWidget {
                           .HARRY_POTTER_CHARACTERS_LIST_ITEM_SPACE_BETWEEN_TITLE_AND_INFO,
                     ),
                     Text(
-                      "${AppStrings.HARRY_POTTER_CHARACTERS_LIST_ITEM_BORN_IN_TEXT} ${_character.yearOfBirth.isNotEmpty ? _character.yearOfBirth : AppStrings.APP_UNKNOWN}",
+                      "${_character.gender} ${_character.ancestry}",
                       style: const TextStyle(
                           fontSize: AppDimens
                               .HARRY_POTTER_CHARACTERS_LIST_ITEM_FONT_SIZE,
@@ -67,16 +66,26 @@ class HarryPotterCharactersListItem extends StatelessWidget {
                     )
                   ],
                 ),
-                FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: _character.image,
-                  width:
-                      AppDimens.HARRY_POTTER_CHARACTERS_LIST_ITEM_IMAGE_WIDTH,
-                  height:
-                      AppDimens.HARRY_POTTER_CHARACTERS_LIST_ITEM_IMAGE_HEIGHT,
-                  imageCacheWidth: AppDimens
-                      .HARRY_POTTER_CHARACTERS_LIST_ITEM_IMAGE_CACHED_HEIGHT,
-                ),
+                _character.image.isNotEmpty
+                    ? FadeInImage.memoryNetwork(
+                        placeholder: kTransparentImage,
+                        image: _character.image,
+                        width: AppDimens
+                            .HARRY_POTTER_CHARACTERS_LIST_ITEM_IMAGE_WIDTH,
+                        height: AppDimens
+                            .HARRY_POTTER_CHARACTERS_LIST_ITEM_IMAGE_HEIGHT,
+                        imageCacheWidth: AppDimens
+                            .HARRY_POTTER_CHARACTERS_LIST_ITEM_IMAGE_CACHED_HEIGHT,
+                      )
+                    : FadeInImage.memoryNetwork(
+                        placeholder: kTransparentImage,
+                        image: HarryPotterCharacter.DEFAULT_OFFLINE_IMAGE,
+                        width: AppDimens
+                            .HARRY_POTTER_CHARACTERS_LIST_ITEM_IMAGE_WIDTH,
+                        height: AppDimens
+                            .HARRY_POTTER_CHARACTERS_LIST_ITEM_IMAGE_HEIGHT,
+                        imageCacheWidth: AppDimens
+                            .HARRY_POTTER_CHARACTERS_LIST_ITEM_IMAGE_CACHED_HEIGHT),
               ],
             ),
           ),

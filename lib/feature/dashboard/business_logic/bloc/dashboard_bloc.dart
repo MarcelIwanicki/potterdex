@@ -31,7 +31,11 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         List<HarryPotterCharacter> harryPotterCharacters =
             await service.getHarryPotterCharactersFromLocalDatabase();
         List<HarryPotterCharacter> filteredHarryPotterCharacters =
-            filterFunction(harryPotterCharacters);
+            await filterFunction(harryPotterCharacters);
+        if (event is SearchHarryPotterCharacterByQuery) {
+          filteredHarryPotterCharacters = await service
+              .searchForHarryPotterCharactersInLocalDatabase(event.query);
+        }
         yield HarryPotterCharactersAreLoadedState(
             filteredHarryPotterCharacters);
       } catch (e) {
