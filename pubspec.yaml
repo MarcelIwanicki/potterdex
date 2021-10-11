@@ -37,6 +37,8 @@ dependencies:
   bloc_test: ^8.1.0
   mockito: ^5.0.15
   mocktail: ^0.1.4
+  provider: ^6.0.1
+  shared_preferences: ^2.0.7
 
 dev_dependencies:
   floor_generator: ^1.1.0

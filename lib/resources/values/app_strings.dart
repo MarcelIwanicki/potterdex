@@ -10,6 +10,10 @@ class AppStrings {
   // DASHBOARD SEARCH
   static const DASHBOARD_SEARCH = "Search";
 
+  // SIDE DRAWER
+  static const SIDE_DRAWER_THEMES = "Themes";
+  static const SIDE_DRAWER_SETTINGS = "Settings";
+
   // CATEGORIES SCROLLER
   static const CATEGORIES_SCROLLER_ITEM_NAME_ALL_ITEMS = "All\nitems";
   static const CATEGORIES_SCROLLER_ITEM_NAME_ALL_ITEMS_DESCRIPTION =

@@ -5,6 +5,7 @@ import 'package:potterdex/feature/dashboard/business_logic/bloc/dashboard_bloc.d
 import 'package:potterdex/feature/dashboard/business_logic/cubit/close_container_cubit.dart';
 import 'package:potterdex/feature/dashboard/presentation/widget/categories_scroller.dart';
 import 'package:potterdex/feature/dashboard/presentation/widget/dashboard_appbar.dart';
+import 'package:potterdex/feature/dashboard/presentation/widget/dashboard_side_drawer.dart';
 import 'package:potterdex/resources/values/app_dimens.dart';
 import 'package:potterdex/resources/values/app_strings.dart';
 
@@ -72,6 +73,7 @@ class _DashboardPageState extends State<DashboardPage> {
           height: AppDimens.DASHBOARD_BOTTOM_BAR_HEIGHT,
         ),
       ),
+      drawer: DashboardSideDrawer(),
       body: SafeArea(
         child: Column(
           children: [

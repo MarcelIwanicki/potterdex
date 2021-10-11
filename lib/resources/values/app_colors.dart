@@ -24,9 +24,9 @@ class AppColors {
   static const Color RAVENCLAW_DARK_COLOR = Color(0xFF000000);
 
   // HUFFLEPUFF
-  static const Color HUFFLEPUFF_PRIMARY_COLOR = Color(0xFFFFF4B1);
-  static const Color HUFFLEPUFF_SECONDARY_COLOR = Color(0xFFFFED86);
-  static const Color HUFFLEPUFF_ACCENT_COLOR = Color(0xFFFFDB00);
-  static const Color HUFFLEPUFF_SECONDARY_ACCENT_COLOR = Color(0xFF60605C);
+  static const Color HUFFLEPUFF_PRIMARY_COLOR = Color(0xFFD3A625);
+  static const Color HUFFLEPUFF_SECONDARY_COLOR = Color(0xFFFFDB00);
+  static const Color HUFFLEPUFF_ACCENT_COLOR = Color(0xFF60605C);
+  static const Color HUFFLEPUFF_SECONDARY_ACCENT_COLOR = Color(0xFFFFDB00);
   static const Color HUFFLEPUFF_DARK_COLOR = Color(0xFF000000);
 }

@@ -19,7 +19,12 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
         style: TextStyle(color: Colors.black),
       ),
       backgroundColor: Colors.white,
-      leading: Icon(Icons.menu, color: Colors.black),
+      leading: IconButton(
+        icon: Icon(Icons.menu, color: Colors.black),
+        onPressed: () {
+          Scaffold.of(context).openDrawer();
+        },
+      ),
       actions: [
         AnimatedSearchBar(_dashboardBloc, _size),
         IconButton(
