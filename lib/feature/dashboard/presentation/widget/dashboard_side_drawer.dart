@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:potterdex/feature/themes/presentation/page/theme_page.dart';
 import 'package:potterdex/resources/values/app_strings.dart';
 
 const BACKGROUND_SRC = 'assets/background.jpg';
@@ -28,7 +29,10 @@ class DashboardSideDrawer extends StatelessWidget {
                 Icon(Icons.style)
               ],
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ThemePage()));
+            },
           ),
           ListTile(
             title: Row(
