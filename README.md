@@ -1,16 +1,28 @@
 # potterdex
 
-Potterdex, Harry Potter fan app
+## about
 
-## Getting Started
+Potterdex is Harry Potter fan app fetching data from
 
-This project is a starting point for a Flutter application.
+```
+https://hp-api.herokuapp.com/
+```
 
-A few resources to get you started if this is your first Flutter project:
+## technologies used
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+```
+flutter
+bloc
+dependency injection
+floor database
+shared preferences
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## screenshots
+
+![dashboard](screenshots/dashboard.PNG)
+![details](screenshots/details.PNG)
+![add](screenshots/add.PNG)
+![side](screenshots/side.PNG)
+![themes](screenshots/themes.PNG)
+![ravenclaw_theme](screenshots/ravenclaw_theme.PNG)
